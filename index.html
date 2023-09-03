@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Meal Generator</h1>
+        <div class="flex">
+            <!--Search Form-->
+            <form class="flex" id="submit">
+                <input type="text" id="search" placeholder="Search"/>
+                <button class="search-btn" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+            <!--Random Meal Generator Button-->
+            <button class="generate-btn" id="generate">
+                <i class="fas fa-random"></i>
+            </button>
+        </div>
+
+        <!--Heading for the search results-->
+        <div class="results-heading"></div>
+
+        <!--Div to containe the meals returned from API-->
+        <div class="meals" id="meals"></div>
+
+        <!--Details of Selected meal-->
+        <div id="selected-meal"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
