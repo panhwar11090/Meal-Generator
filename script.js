@@ -14,7 +14,31 @@ function searchMeal(e){
     const searchText = search.value;
     // check if search input field is empty
     if (searchText.trim()){
-        console.log(searchText);
+        // Fetch data from api
+        fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`)
+        .then(res => res.json())
+        .then(data =>{
+            console.log(data);
+            // Update the results Heading
+            resultsHeading.innerHTML = `<h2>Search results for ${searchText}</h2>`;
+            // check if anny results return form api
+            if(data.meals === null){
+                resultsHeading.innerHTML = `<h2>No results for ${searchText}</h2>`;
+
+            }else{
+                meals.innerHTML = data.meals.map(meal => `
+                    <div class="meal">
+                        <img src=""${meal.strMealThumb} alt="${meal.strMeal}"/>
+                        <div class="meal-info" data-mealID="${meal.idMeal}">
+                            <h3>${meal.strMeal}</h3>
+                        </div>
+                    </div>
+                `)
+                .join('')
+            }
+        });
+        // clear the search text
+        search.value='';
     }else{
         alert('Please enter search keyword')
     };
