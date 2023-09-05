@@ -16,26 +16,25 @@ function searchMeal(e){
     if (searchText.trim()){
         // Fetch data from api
         fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`)
-        .then(res => res.json())
-        .then(data =>{
-            console.log(data);
-            // Update the results Heading
-            resultsHeading.innerHTML = `<h2>Search results for ${searchText}</h2>`;
-            // check if anny results return form api
-            if(data.meals === null){
-                resultsHeading.innerHTML = `<h2>No results for ${searchText}</h2>`;
-
-            }else{
-                meals.innerHTML = data.meals.map(meal => `
-                    <div class="meal">
-                        <img src=""${meal.strMealThumb} alt="${meal.strMeal}"/>
-                        <div class="meal-info" data-mealID="${meal.idMeal}">
-                            <h3>${meal.strMeal}</h3>
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                // Update results heading
+                resultsHeading.innerHTML = `<h2>Search results for ${searchText}</h2>`;
+                // Check if any meals returned from API
+                if (data.meals === null) {
+                resultsHeading.innerHTML = `<h2>No results found for ${searchText}</h2>`;
+                } else {
+                    meals.innerHTML = data.meals.map( meal => `
+                        <div class="meal">
+                            <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
+                            <div class="meal-info" data-mealID="${meal.idMeal}">
+                                <h3>${meal.strMeal}</h3>
+                            </div>
                         </div>
-                    </div>
-                `)
-                .join('')
-            }
+                    `)
+                    .join('')
+                }
         });
         // clear the search text
         search.value='';
